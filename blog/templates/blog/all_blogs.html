@@ -1,0 +1,32 @@
+
+ <style>
+  .zoom {
+    transition: transform .2s; /* Animation */
+    width: 180px;
+    height: 180px;
+  }
+
+  .zoom:hover {
+    transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  }
+  </style>
+
+{% extends 'blog/base.html' %}
+{% block content %}
+
+<h1 align=center>Welcome to Ashish's Blogs</h1>
+<br>
+<br>
+<h3>Ashish has written {{blog_prjects.count}} blog{{blog_prjects|pluralize}}</h3>
+{%for x in blog_prjects%}
+<table>
+  <tr>
+    <td>
+<a href="{% url 'details' x.id %}"><h3>{{x.title}}</h3></a>
+<p>{{x.date|date:'M d Y '}}</p>
+<p>{{x.description|striptags|truncatechars:100}}</p>
+ </td>
+ </tr>
+ </table>
+{%endfor%}
+{% endblock %}

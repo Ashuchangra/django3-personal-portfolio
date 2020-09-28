@@ -1,0 +1,137 @@
+{%load static%}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<title>Hello, world!</title>
+<style>
+.tab1 {
+          tab-size: 2;
+      }
+      .mydiv{margin:40px;}
+        .mydiv2{margin-left:200px;
+background-color: #ccffcc;
+            }
+      .titlediv{  background-color: white;}
+body{
+   background:#e6f3ff;
+}
+.zoom {
+
+
+  transition: transform .2s; /* Animation */
+  width: 180px;
+  height: 180px;
+}
+
+.zoom:hover {
+  transform: scale(1.5); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+</style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar navbar-light" style="background-color: white;">
+<img src="{%static 'portfolio/mylogo.png'%}" class="navbar-brand" height="80" width="200"></img>
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+    </div>
+
+  <div class="d-flex flex-row-reverse bd-highlight" id="navbarSupportedContent">
+  <ul class="navbar-nav mr-auto" >
+    <li class="nav-item active">
+      <a href="{% static 'portfolio/ASHISHCHANGRA_CV.docx' %}">
+        <img src="{% static 'portfolio/resume.png' %}" class="navbar-brand" height="35" width="80"></img>
+      </li>
+      <li class="nav-item active">
+        <a href="{% url 'all_blogs' %}">
+      <img src="{% static 'portfolio/blog.png' %}" class="navbar-brand" height="35" width="50"></img>
+    </a>
+
+</li>
+</ul>
+</div>
+
+</nav>
+<br>
+<div class="titlediv text-center">
+<h2>Portfolio</h2>
+</div>
+<br><br>
+<table >
+<tr>
+  <td>
+<div>
+<img src="{% static 'portfolio/ashishpic.jpg' %}" height=400 width=400 ></img>
+</div>
+</td>
+<td >
+<div class="mydiv">
+
+  <h4 style="font-family: 'Fjalla One';font-size: 26px;"><b>Ashish Changra</b></h4>
+  <br>
+  <p>Software developer at Wipro technologies from 2018 to Present.<br>BTech gradute from Graphic Era Hill University<br><h5>Specialised Technology: </h5><br>
+  <li>Java</li>
+  <li>Python</li>
+    <li>CC&B</li>
+    <li>OUAF Framework</li>
+   <li>Django Framework</li>
+  </p>
+</div>
+</td>
+<td>
+  <div class="mydiv2">
+    <h3> Contact me</h3>
+    <br>
+    <p><b>Phone:</b> 9876543210</p>
+    <p><b>Email:</b> xyz@gmail.com</p>
+    <p><b>linkedin:</b> xyz</p>
+    <p><b>Facebook:</b> xyz</p>
+    <p><b>Instagram:</b> xyz</p>
+  </div>
+</td>
+</tr>
+</table>
+<br>
+<br><br><br><br><br><br>
+<div class="container-fluid text-center bg-grey">
+  <div class="titlediv">
+<h2>Courses Offered</h2>
+</div>
+{%for project in projects%}
+    {% if forloop.first %}<div class="row text-center">{% endif %}
+    <div class="col-xs-4" >
+      <div class="mydiv zoom" >
+
+      <img src='{{project.image.url}}' alt="Paris" height=200 width=200>
+    <a href='{{project.url}}'>  <p><strong>{{project.tittle}}</strong></p></a>
+      <p>{{project.description}}</p>
+        </div>
+      </div>
+    {% if forloop.counter|divisibleby:3 %}</div><div class="row">{% endif %}
+    {% if forloop.last %}</div>{% endif %}
+{% endfor %}
+  </div>
+  <br><br><br><br><br><br>
+  <div class="container-fluid text-center bg-grey">
+    <div class="titlediv">
+  <h2>Exam Dumps</h2>
+  </div>
+  {%for dump in dumps%}
+      {% if forloop.first %}<div class="row text-center">{% endif %}
+      <div class="col-xs-4" >
+        <div class="mydiv" >
+      <a href='{{dump.file.url}}'>  <p><strong>{{dump.name}}</strong></p></a>
+        <p>{{dump.version}}</p>
+          </div>
+        </div>
+      {% if forloop.counter|divisibleby:3 %}</div><div class="row">{% endif %}
+      {% if forloop.last %}</div>{% endif %}
+  {% endfor %}
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+</body>
+</html>
